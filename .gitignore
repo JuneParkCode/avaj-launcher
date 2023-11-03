@@ -1,4 +1,9 @@
+# ignore
+.vscode/
+sources.txt
+
 # Compiled class file
+
 *.class
 
 # Log file
