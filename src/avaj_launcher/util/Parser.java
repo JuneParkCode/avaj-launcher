@@ -61,7 +61,7 @@ public class Parser {
     private Flyable parseFlyableLine(final String line)
             throws InvalidScenarioSyntaxException, InvalidAircraftTypeException {
         final AircraftFactory aircraftFactory = AircraftFactory.getInstance();
-        final String regex = "^(\\w+) (\\w+) (\\d]) (\\d+) (\\d+)$";
+        final String regex = "^(\\w+) (\\w+) (\\d+) (\\d+) (\\d+)$";
         final Matcher matcher = Pattern.compile(regex).matcher(line);
         if (!matcher.find()) {
             throw new InvalidScenarioSyntaxException();
