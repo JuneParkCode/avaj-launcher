@@ -6,7 +6,7 @@ import avaj_launcher.util.Logger;
 
 /*
  * Aircraft class is suggested as concrete class in subject's UML
- * But, Aircraft can not instanced by self. so, I use "abstract class" for this class
+ * But, Aircraft can not instanced by itself. so, I use "abstract class" for this class
 */
 public abstract class Aircraft extends Flyable {
     protected long id;
