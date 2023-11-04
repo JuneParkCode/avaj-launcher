@@ -5,7 +5,7 @@ package avaj_launcher.coordinates;
  * packages.
  */
 public class CoordinatesFactory {
-    public static Coordinates newCoordinates(int p_longitude, int p_latitude, int p_height) {
-        return new Coordinates(p_longitude, p_latitude, p_height);
+    public static Coordinates newCoordinates(int longitude, int latitude, int height) {
+        return new Coordinates(longitude, latitude, height);
     }
 }

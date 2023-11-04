@@ -9,6 +9,6 @@ public class SimulatorData {
     public List<Flyable> flyables;
 
     public SimulatorData() {
-        flyables = new LinkedList<Flyable>();
+        this.flyables = new LinkedList<Flyable>();
     }
 }

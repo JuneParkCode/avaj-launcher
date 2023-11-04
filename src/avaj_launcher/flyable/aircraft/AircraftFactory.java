@@ -19,15 +19,15 @@ public class AircraftFactory {
         return instance;
     }
 
-    public Flyable newAircraft(String p_type, String p_name, Coordinates p_coordinates)
+    public Flyable newAircraft(String type, String name, Coordinates coordinates)
             throws InvalidAircraftTypeException {
-        switch (p_type) {
+        switch (type) {
             case "Baloon":
-                return new Baloon(++currentId, p_name, p_coordinates);
+                return new Baloon(++currentId, name, coordinates);
             case "JetPlane":
-                return new JetPlane(++currentId, p_name, p_coordinates);
+                return new JetPlane(++currentId, name, coordinates);
             case "Helicopter":
-                return new Helicopter(++currentId, p_name, p_coordinates);
+                return new Helicopter(++currentId, name, coordinates);
         }
         throw new InvalidAircraftTypeException();
     }

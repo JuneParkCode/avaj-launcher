@@ -21,17 +21,17 @@ public class WeatherProvider {
         return instance;
     }
 
-    public void setTime(int p_time) {
-        time = p_time;
+    public void setTime(int newTime) {
+        time = newTime;
     }
 
     public void updateTime() {
         ++time;
     }
 
-    public String getCurrentWeather(Coordinates p_coordinates) {
-        int position = p_coordinates.getLongitude() * 10000 + p_coordinates.getLatitude() * 100
-                + p_coordinates.getHeight();
+    public String getCurrentWeather(Coordinates coordinates) {
+        int position = coordinates.getLongitude() * 10000 + coordinates.getLatitude() * 100
+                + coordinates.getHeight();
         int index = (position + time + salt) % weather.length;
 
         return weather[index];

@@ -13,27 +13,27 @@ public abstract class Aircraft extends Flyable {
     protected String name;
     protected Coordinates coordinates;
 
-    protected Aircraft(long p_id, String p_name, Coordinates p_coordinates) {
-        id = p_id;
-        name = p_name;
-        coordinates = p_coordinates;
+    protected Aircraft(long id, String name, Coordinates coordinates) {
+        this.id = id;
+        this.name = name;
+        this.coordinates = coordinates;
     }
 
     public abstract void updateConditions();
 
-    protected void updateCoordinates(int longitude_diff, int latitude_diff, int height_diff) {
+    protected void updateCoordinates(int longitudeDiff, int latitudeDiff, int heightDiff) {
         int longitude = coordinates.getLongitude();
         int latitude = coordinates.getLatitude();
         int height = coordinates.getHeight();
 
-        height += height_diff;
-        longitude += longitude_diff;
-        latitude += latitude_diff;
+        height += heightDiff;
+        longitude += longitudeDiff;
+        latitude += latitudeDiff;
         coordinates.setCoordinates(longitude, latitude, height);
     }
 
     public void land() {
         Logger.log(String.format("%s : landing...", getInfo()));
-        weatherTower.unregister(this);
+        this.weatherTower.unregister(this);
     }
 }

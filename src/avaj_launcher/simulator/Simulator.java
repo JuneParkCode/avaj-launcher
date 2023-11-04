@@ -12,22 +12,23 @@ public class Simulator {
     private int currentSimulationCount;
     private WeatherTower weatherTower;
 
-    public Simulator(SimulatorData p_data) {
-        flyables = p_data.flyables;
-        totalSimulationCount = p_data.simulations;
-        currentSimulationCount = 0;
-        weatherTower = new WeatherTower();
+    public Simulator(SimulatorData simulationData) {
+        this.flyables = simulationData.flyables;
+        this.totalSimulationCount = simulationData.simulations;
+        this.currentSimulationCount = 0;
+        this.weatherTower = new WeatherTower();
         for (Flyable flyable : flyables) {
             flyable.registerTower(weatherTower);
         }
     }
 
     public void simulate() {
-        while (currentSimulationCount < totalSimulationCount) {
+        while (this.currentSimulationCount < this.totalSimulationCount) {
             Logger.log(
-                    String.format("\n=== SIMULATION (%d/%d) ===", currentSimulationCount + 1, totalSimulationCount));
-            weatherTower.changeWeather();
-            ++currentSimulationCount;
+                    String.format("\n=== SIMULATION (%d/%d) ===", this.currentSimulationCount + 1,
+                            this.totalSimulationCount));
+            this.weatherTower.changeWeather();
+            ++this.currentSimulationCount;
         }
     }
 }

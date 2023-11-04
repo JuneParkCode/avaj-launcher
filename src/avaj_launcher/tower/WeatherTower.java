@@ -7,15 +7,15 @@ public class WeatherTower extends Tower {
     private WeatherProvider weatherProvider;
 
     public WeatherTower() {
-        weatherProvider = WeatherProvider.getInstance();
+        this.weatherProvider = WeatherProvider.getInstance();
     }
 
-    public String getWeather(Coordinates p_Coordinates) {
-        return weatherProvider.getCurrentWeather(p_Coordinates);
+    public String getWeather(Coordinates coordinates) {
+        return this.weatherProvider.getCurrentWeather(coordinates);
     }
 
     public void changeWeather() {
-        weatherProvider.updateTime();
+        this.weatherProvider.updateTime();
         conditionChanged();
         unregisterAll();
     }

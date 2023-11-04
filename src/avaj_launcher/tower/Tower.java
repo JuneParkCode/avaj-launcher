@@ -11,32 +11,32 @@ public class Tower {
     private List<Flyable> unregistList;
 
     public Tower() {
-        observers = new LinkedList<Flyable>();
-        unregistList = new LinkedList<Flyable>();
+        this.observers = new LinkedList<Flyable>();
+        this.unregistList = new LinkedList<Flyable>();
     }
 
-    public void register(Flyable p_Flyable) {
-        if (observers.contains(p_Flyable))
+    public void register(Flyable flyable) {
+        if (this.observers.contains(flyable))
             return;
-        observers.add(p_Flyable);
-        Logger.log(String.format("Tower says: %s registered to weather tower", p_Flyable.getInfo()));
+        this.observers.add(flyable);
+        Logger.log(String.format("Tower says: %s registered to weather tower", flyable.getInfo()));
     }
 
-    public void unregister(Flyable p_Flyable) {
-        unregistList.add(p_Flyable);
-        Logger.log(String.format("Tower says: %s unregistered from weather tower.", p_Flyable.getInfo()));
+    public void unregister(Flyable flyable) {
+        this.unregistList.add(flyable);
+        Logger.log(String.format("Tower says: %s unregistered from weather tower.", flyable.getInfo()));
     }
 
     protected void conditionChanged() {
-        for (Flyable observer : observers) {
+        for (Flyable observer : this.observers) {
             observer.updateConditions();
         }
     }
 
     protected void unregisterAll() {
-        for (Flyable unregister : unregistList) {
+        for (Flyable unregister : this.unregistList) {
             observers.remove(unregister);
         }
-        unregistList.clear();
+        this.unregistList.clear();
     }
 }

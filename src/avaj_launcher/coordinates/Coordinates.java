@@ -9,45 +9,45 @@ public class Coordinates {
     public static final int MIN_HEIGHT = 0;
     public static final int MAX_HEIGHT = 100;
 
-    Coordinates(int p_longitude, int p_latitude, int p_height) {
-        setLongitude(p_longitude);
-        setLatitude(p_latitude);
-        setHeight(p_height);
+    Coordinates(int longitude, int latitude, int height) {
+        setLongitude(longitude);
+        setLatitude(latitude);
+        setHeight(height);
     }
 
     public int getLongitude() {
-        return longitude;
+        return this.longitude;
     }
 
     public int getLatitude() {
-        return latitude;
+        return this.latitude;
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
-    public void setLongitude(int p_longitude) {
-        longitude = p_longitude;
+    public void setLongitude(int longitude) {
+        this.longitude = longitude;
     }
 
-    public void setLatitude(int p_latitude) {
-        latitude = p_latitude;
+    public void setLatitude(int latitude) {
+        this.latitude = latitude;
     }
 
-    public void setHeight(int p_height) {
-        if (p_height < 0)
-            height = 0;
-        else if (p_height > MAX_HEIGHT)
-            height = MAX_HEIGHT;
+    public void setHeight(int height) {
+        if (height < 0)
+            this.height = 0;
+        else if (height > MAX_HEIGHT)
+            this.height = MAX_HEIGHT;
         else
-            height = p_height;
+            this.height = height;
 
     }
 
-    public void setCoordinates(int p_longitude, int p_latitude, int p_height) {
-        setLongitude(p_longitude);
-        setLatitude(p_latitude);
-        setHeight(p_height);
+    public void setCoordinates(int longitude, int latitude, int height) {
+        setLongitude(longitude);
+        setLatitude(latitude);
+        setHeight(height);
     }
 }

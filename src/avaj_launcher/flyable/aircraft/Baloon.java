@@ -4,25 +4,25 @@ import avaj_launcher.coordinates.Coordinates;
 import avaj_launcher.util.Logger;
 
 public class Baloon extends Aircraft {
-    private final static String TYPE = "Baloon";
+    private static final String TYPE = "Baloon";
 
     // is there any better solution?
     // DEFINE INDEX
-    private final static int LONGITUDE = 0;
-    private final static int LATITUDE = 1;
-    private final static int HEIGHT = 2;
+    private static final int LONGITUDE = 0;
+    private static final int LATITUDE = 1;
+    private static final int HEIGHT = 2;
     // { LONGITUDE, LATITUDE, HEIGHT }
-    private final static int[] SUN_DIFF = { 2, 0, 4 };
-    private final static int[] RAIN_DIFF = { 0, 0, -5 };
-    private final static int[] FOG_DIFF = { 0, 0, -3 };
-    private final static int[] SNOW_DIFF = { 0, 0, -15 };
+    private static final int[] SUN_DIFF = { 2, 0, 4 };
+    private static final int[] RAIN_DIFF = { 0, 0, -5 };
+    private static final int[] FOG_DIFF = { 0, 0, -3 };
+    private static final int[] SNOW_DIFF = { 0, 0, -15 };
 
-    public Baloon(long p_id, String p_name, Coordinates p_coordinates) {
-        super(p_id, p_name, p_coordinates);
+    public Baloon(long id, String name, Coordinates coordinates) {
+        super(id, name, coordinates);
     }
 
     public void updateConditions() {
-        final String weather = weatherTower.getWeather(coordinates);
+        final String weather = this.weatherTower.getWeather(this.coordinates);
 
         switch (weather) {
             case "SUN":
@@ -42,11 +42,11 @@ public class Baloon extends Aircraft {
                 Logger.log(String.format("%s: IT SNOWS!! ", getInfo()));
                 break;
         }
-        if (coordinates.getHeight() == 0)
+        if (this.coordinates.getHeight() == 0)
             land();
     }
 
     public String getInfo() {
-        return String.format("%s#%s(%d)", TYPE, name, id);
+        return String.format("%s#%s(%d)", TYPE, this.name, this.id);
     }
 }
