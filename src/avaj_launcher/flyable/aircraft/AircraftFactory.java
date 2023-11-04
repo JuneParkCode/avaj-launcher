@@ -1,6 +1,5 @@
 package avaj_launcher.flyable.aircraft;
 
-import avaj_launcher.coordinates.Coordinates;
 import avaj_launcher.flyable.Flyable;
 
 public class AircraftFactory {

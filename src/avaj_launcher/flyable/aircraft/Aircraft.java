@@ -1,8 +1,7 @@
 package avaj_launcher.flyable.aircraft;
 
-import avaj_launcher.coordinates.Coordinates;
 import avaj_launcher.flyable.Flyable;
-import avaj_launcher.util.Logger;
+import avaj_launcher.simulator.Logger;
 
 /*
  * Aircraft class is suggested as concrete class in subject's UML

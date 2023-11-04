@@ -1,6 +1,6 @@
 package avaj_launcher.weather;
 
-import avaj_launcher.coordinates.Coordinates;
+import avaj_launcher.flyable.aircraft.Coordinates;
 
 public class WeatherProvider {
     private String[] weather = { "RAIN", "FOG", "SUN", "SNOW" };

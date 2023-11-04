@@ -1,9 +1,9 @@
 package avaj_launcher;
 
+import avaj_launcher.simulator.Logger;
+import avaj_launcher.simulator.ScenarioParser;
 import avaj_launcher.simulator.Simulator;
 import avaj_launcher.simulator.SimulatorData;
-import avaj_launcher.util.Logger;
-import avaj_launcher.util.Parser;
 
 public class AvajLauncher {
   public static void main(String args[]) {
@@ -17,7 +17,7 @@ public class AvajLauncher {
       // do simulations
       {
         String fileName = args[0];
-        Parser parser = new Parser();
+        ScenarioParser parser = new ScenarioParser();
         SimulatorData simulatorData = parser.parse(fileName);
         Simulator simulator = new Simulator(simulatorData);
         simulator.simulate();

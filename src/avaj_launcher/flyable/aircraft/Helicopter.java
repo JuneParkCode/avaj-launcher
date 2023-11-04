@@ -1,7 +1,6 @@
 package avaj_launcher.flyable.aircraft;
 
-import avaj_launcher.coordinates.Coordinates;
-import avaj_launcher.util.Logger;
+import avaj_launcher.simulator.Logger;
 
 public class Helicopter extends Aircraft {
     private static final String TYPE = "Helicopter";
