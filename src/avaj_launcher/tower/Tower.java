@@ -8,6 +8,8 @@ import avaj_launcher.simulator.Logger;
 
 public class Tower {
     private List<Flyable> observers;
+    // unregist list 의 경우, observers iteration 과정에서 observer 가 remove 되면서 iterator
+    // 손상이 일어나는 것을 막습니다.
     private List<Flyable> unregistList;
 
     public Tower() {
