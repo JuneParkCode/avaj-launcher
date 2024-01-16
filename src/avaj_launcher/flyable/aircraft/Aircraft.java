@@ -7,7 +7,7 @@ import avaj_launcher.simulator.Logger;
  * Aircraft class is suggested as concrete class in subject's UML
  * But, Aircraft can not instanced by itself. so, I use "abstract class" for this class
 */
-public abstract class Aircraft extends Flyable {
+public class Aircraft extends Flyable {
     protected long id;
     protected String name;
     protected Coordinates coordinates;
@@ -18,7 +18,10 @@ public abstract class Aircraft extends Flyable {
         this.coordinates = coordinates;
     }
 
-    public abstract void updateConditions();
+    @Override
+    public void updateConditions() {
+        /* no type no update */
+    }
 
     protected void updateCoordinates(int longitudeDiff, int latitudeDiff, int heightDiff) {
         int longitude = coordinates.getLongitude();
@@ -31,8 +34,14 @@ public abstract class Aircraft extends Flyable {
         coordinates.setCoordinates(longitude, latitude, height);
     }
 
+    @Override
     public void land() {
         Logger.log(String.format("%s : landing...", getInfo()));
         this.weatherTower.unregister(this);
+    }
+
+    @Override
+    public String getInfo() {
+        return String.format("%s#%s(%d)", "unknown", "aircraft", this.id);
     }
 }
