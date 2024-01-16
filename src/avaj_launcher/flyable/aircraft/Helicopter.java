@@ -20,6 +20,7 @@ public class Helicopter extends Aircraft {
         super(p_id, p_name, p_coordinates);
     }
 
+    @Override
     public void updateConditions() {
         final String weather = this.weatherTower.getWeather(this.coordinates);
 
@@ -45,6 +46,7 @@ public class Helicopter extends Aircraft {
             land();
     }
 
+    @Override
     public String getInfo() {
         return String.format("%s#%s(%d)", TYPE, this.name, this.id);
     }

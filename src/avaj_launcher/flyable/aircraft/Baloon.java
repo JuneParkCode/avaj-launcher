@@ -20,6 +20,7 @@ public class Baloon extends Aircraft {
         super(id, name, coordinates);
     }
 
+    @Override
     public void updateConditions() {
         final String weather = this.weatherTower.getWeather(this.coordinates);
 
@@ -45,6 +46,7 @@ public class Baloon extends Aircraft {
             land();
     }
 
+    @Override
     public String getInfo() {
         return String.format("%s#%s(%d)", TYPE, this.name, this.id);
     }
