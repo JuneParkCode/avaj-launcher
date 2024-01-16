@@ -33,9 +33,10 @@ public class Tower {
         for (Flyable observer : this.observers) {
             observer.updateConditions();
         }
+        unregisterAll();
     }
 
-    protected void unregisterAll() {
+    private void unregisterAll() {
         for (Flyable unregister : this.unregistList) {
             observers.remove(unregister);
         }
