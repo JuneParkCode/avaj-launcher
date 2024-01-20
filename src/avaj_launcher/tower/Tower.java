@@ -1,5 +1,6 @@
 package avaj_launcher.tower;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Tower {
 
     public Tower() {
         this.observers = new LinkedList<Flyable>();
-        this.unregistList = new LinkedList<Flyable>();
+        this.unregistList = new ArrayList<Flyable>();
     }
 
     public void register(Flyable flyable) {
@@ -30,16 +31,8 @@ public class Tower {
     }
 
     protected void conditionChanged() {
-        for (Flyable observer : this.observers) {
-            observer.updateConditions();
-        }
-        unregisterAll();
-    }
-
-    private void unregisterAll() {
-        for (Flyable unregister : this.unregistList) {
-            observers.remove(unregister);
-        }
+        this.observers.forEach(Flyable::updateConditions);
+        this.observers.removeIf(flyable -> this.unregistList.contains(flyable));
         this.unregistList.clear();
     }
 }

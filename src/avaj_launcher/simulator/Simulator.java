@@ -16,9 +16,7 @@ public class Simulator {
         this.totalSimulationCount = simulationData.simulations;
         this.currentSimulationCount = 0;
         this.weatherTower = new WeatherTower();
-        for (Flyable flyable : flyables) {
-            flyable.registerTower(weatherTower);
-        }
+        flyables.forEach((flyables) -> flyables.registerTower(weatherTower));
     }
 
     public void simulate() {
