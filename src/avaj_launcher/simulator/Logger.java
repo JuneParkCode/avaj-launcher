@@ -8,8 +8,8 @@ public class Logger {
     private static FileWriter fileWriter;
 
     private Logger(String filePath) {
-        try {
-            fileWriter = new FileWriter(filePath);
+        try (FileWriter fw = new FileWriter(filePath)) {
+            fileWriter = fw;
         } catch (IOException e) {
             System.err.println("Logger file is invaild");
             System.exit(1);
@@ -35,7 +35,7 @@ public class Logger {
     }
 
     public static void close() {
-        if (instance == null)
+        if (instance == null || fileWriter == null)
             return;
         try {
             fileWriter.flush();
