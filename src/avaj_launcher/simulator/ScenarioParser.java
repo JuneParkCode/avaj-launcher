@@ -1,5 +1,6 @@
 package avaj_launcher.simulator;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import avaj_launcher.flyable.Flyable;
 import avaj_launcher.flyable.aircraft.AircraftParser;
+import avaj_launcher.flyable.aircraft.AircraftParser.InvalidSyntaxException;
 
 /**
  * Avaj-launcher data format
@@ -20,19 +22,22 @@ public class ScenarioParser {
     }
 
     public SimulatorData parse(final String filePath) throws ParseFailedException {
-        SimulatorData simulationData = new SimulatorData();
-        Path path = Paths.get(filePath);
-        if (!Files.exists(path)) {
-            throw new ParseFailedException(String.format("File '%s' is not exists", filePath));
-        }
         try {
+            SimulatorData simulationData = new SimulatorData();
+            Path path = Paths.get(filePath);
             List<String> lines = Files.readAllLines(path);
-            simulationData.simulations = parseSimulations(lines.get(0));
-            simulationData.flyables = parseFlyables(lines.subList(1, lines.size()));
-        } catch (Exception e) {
+    
+            if (lines.size() < 2) {
+                throw new ParseFailedException("Scenario file is too short");
+            }
+            simulationData.setSimulations(parseSimulations(lines.get(0)));
+            simulationData.setFlyables(parseFlyables(lines.subList(1, lines.size())));
+            return simulationData;
+        } catch (IOException e) {
+            throw new ParseFailedException(e.getMessage());
+        } catch (InvalidSyntaxException e) {
             throw new ParseFailedException(e.getMessage());
         }
-        return simulationData;
     }
 
     private int parseSimulations(final String line) throws ParseFailedException {
@@ -43,16 +48,12 @@ public class ScenarioParser {
         }
     }
 
-    private List<Flyable> parseFlyables(final List<String> lines) throws ParseFailedException {
+    private List<Flyable> parseFlyables(final List<String> lines) throws InvalidSyntaxException{
         AircraftParser aircraftParser = new AircraftParser();
         List<Flyable> flyables = new ArrayList<Flyable>();
 
-        try {
-            for (String line : lines) {
-                flyables.add(aircraftParser.parse(line));
-            }
-        } catch (Exception e) {
-            throw new ParseFailedException(e.getMessage());
+        for (String line : lines) {
+            flyables.add(aircraftParser.parse(line));
         }
         return flyables;
     }

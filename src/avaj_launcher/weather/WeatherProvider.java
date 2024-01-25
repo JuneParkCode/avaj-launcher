@@ -3,10 +3,10 @@ package avaj_launcher.weather;
 import avaj_launcher.flyable.aircraft.Coordinates;
 
 public class WeatherProvider {
-    private String[] weather = { "RAIN", "FOG", "SUN", "SNOW" };
     private static WeatherProvider instance;
     private static int time = 0;
     private static int salt = 0;
+    private static final Weather[] weathers = Weather.values();
 
     private WeatherProvider() {
         salt = (int) (Math.random() * 100000); // make randomized weather
@@ -30,10 +30,9 @@ public class WeatherProvider {
     }
 
     public String getCurrentWeather(Coordinates coordinates) {
-        int position = coordinates.getLongitude() * 10000 + coordinates.getLatitude() * 100
-                + coordinates.getHeight();
-        int index = (position + time + salt) % weather.length;
+        int position = coordinates.getLongitude() + coordinates.getLatitude() + coordinates.getHeight();
+        int index = (position + time + salt) % weathers.length;
 
-        return weather[index];
+        return weathers[index].name();
     }
 }

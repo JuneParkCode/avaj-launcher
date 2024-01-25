@@ -3,10 +3,6 @@ package avaj_launcher.flyable.aircraft;
 import avaj_launcher.flyable.Flyable;
 import avaj_launcher.utils.logger.Logger;
 
-/*
- * Aircraft class is suggested as concrete class in subject's UML
- * But, Aircraft can not instanced by itself. so, I use "abstract class" for this class
-*/
 public class Aircraft extends Flyable {
     protected long id;
     protected String name;
@@ -23,14 +19,8 @@ public class Aircraft extends Flyable {
         /* no type no update */
     }
 
-    protected void updateCoordinates(int longitudeDiff, int latitudeDiff, int heightDiff) {
-        int longitude = coordinates.getLongitude();
-        int latitude = coordinates.getLatitude();
-        int height = coordinates.getHeight();
 
-        height += heightDiff;
-        longitude += longitudeDiff;
-        latitude += latitudeDiff;
+    protected void updateCoordinates(int longitude, int latitude, int height) {
         coordinates.setCoordinates(longitude, latitude, height);
     }
 

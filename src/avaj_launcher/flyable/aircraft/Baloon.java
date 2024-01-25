@@ -5,7 +5,6 @@ import avaj_launcher.utils.logger.Logger;
 public class Baloon extends Aircraft {
     private static final String TYPE = "Baloon";
 
-    // is there any better solution?
     // DEFINE INDEX
     private static final int LONGITUDE = 0;
     private static final int LATITUDE = 1;
@@ -15,6 +14,11 @@ public class Baloon extends Aircraft {
     private static final int[] RAIN_DIFF = { 0, 0, -5 };
     private static final int[] FOG_DIFF = { 0, 0, -3 };
     private static final int[] SNOW_DIFF = { 0, 0, -15 };
+    // MESSAGES
+    private static final String SUN_MSG = "BOOLON IS HOT.";
+    private static final String RAIN_MSG = "BOOLON IS WET";
+    private static final String FOG_MSG = "TOO FOGGY! I CAN'T SEE ANYTHING!";
+    private static final String SNOW_MSG = "BOOLON IS COLD!!";
 
     public Baloon(long id, String name, Coordinates coordinates) {
         super(id, name, coordinates);
@@ -24,26 +28,45 @@ public class Baloon extends Aircraft {
     public void updateConditions() {
         final String weather = this.weatherTower.getWeather(this.coordinates);
 
-        switch (weather) {
-            case "SUN":
-                updateCoordinates(SUN_DIFF[LONGITUDE], SUN_DIFF[LATITUDE], SUN_DIFF[HEIGHT]);
-                Logger.log(String.format("%s: SUNNY DAY.", getInfo()));
-                break;
-            case "RAIN":
-                updateCoordinates(RAIN_DIFF[LONGITUDE], RAIN_DIFF[LATITUDE], RAIN_DIFF[HEIGHT]);
-                Logger.log(String.format("%s: RAIN RAIN RAIN.", getInfo()));
-                break;
-            case "FOG":
-                updateCoordinates(FOG_DIFF[LONGITUDE], FOG_DIFF[LATITUDE], FOG_DIFF[HEIGHT]);
-                Logger.log(String.format("%s: TOO FOGGY ", getInfo()));
-                break;
-            case "SNOW":
-                updateCoordinates(SNOW_DIFF[LONGITUDE], SNOW_DIFF[LATITUDE], SNOW_DIFF[HEIGHT]);
-                Logger.log(String.format("%s: IT SNOWS!! ", getInfo()));
-                break;
-        }
+        updateByWeather(weather);
         if (this.coordinates.getHeight() == 0)
             land();
+    }
+
+    private void updateByWeather(String Weather) {
+        int longitude = this.coordinates.getLongitude();
+        int latitude = this.coordinates.getLatitude();
+        int height = this.coordinates.getHeight();
+        int[] weatherDiff = null;
+        String message = "";
+
+        switch (Weather) {
+            case "SUN":
+                weatherDiff = SUN_DIFF;
+                message = SUN_MSG;
+                break;
+            case "RAIN":
+                weatherDiff = RAIN_DIFF;
+                message = RAIN_MSG;
+                break;
+            case "FOG":
+                weatherDiff = FOG_DIFF;
+                message = FOG_MSG;
+                break;
+            case "SNOW":
+                weatherDiff = SNOW_DIFF;
+                message = SNOW_MSG;
+                break;
+            default:
+                // never happends
+                return;
+        }
+
+        longitude += weatherDiff[LONGITUDE];
+        latitude += weatherDiff[LATITUDE];
+        height += weatherDiff[HEIGHT];
+        updateCoordinates(longitude, latitude, height);
+        Logger.log(String.format("%s: %s", getInfo(), message));
     }
 
     @Override

@@ -21,7 +21,7 @@ public class AircraftParser {
      * @throws InvalidAircraftTypeException
      */
     public Flyable parse(final String line)
-            throws InvalidSyntaxException, InvalidAircraftTypeException {
+            throws InvalidSyntaxException {
         final AircraftFactory aircraftFactory = AircraftFactory.getInstance();
         final String regex = "^(\\w+) (\\w+) (\\d+) (\\d+) (\\d+)$";
         final Matcher matcher = Pattern.compile(regex).matcher(line);
@@ -34,7 +34,11 @@ public class AircraftParser {
         final int longitude = Integer.parseInt(matcher.group(3));
         final int latitude = Integer.parseInt(matcher.group(4));
         final int height = Integer.parseInt(matcher.group(5));
-        return aircraftFactory.newAircraft(type, name, new Coordinates(longitude, latitude, height));
+        try {
+            return aircraftFactory.newAircraft(type, name, new Coordinates(longitude, latitude, height));
+        } catch (InvalidAircraftTypeException e) {
+            throw new InvalidSyntaxException(e.getMessage());
+        }
     }
 
     public class InvalidSyntaxException extends Exception {
