@@ -28,7 +28,7 @@ public class ScenarioParser {
         try {
             List<String> lines = Files.readAllLines(path);
             simulationData.simulations = parseSimulations(lines.get(0));
-            simulationData.flyables =  parseFlyables(lines.subList(1, lines.size()));
+            simulationData.flyables = parseFlyables(lines.subList(1, lines.size()));
         } catch (Exception e) {
             throw new ParseFailedException(e.getMessage());
         }
@@ -53,7 +53,7 @@ public class ScenarioParser {
             }
         } catch (Exception e) {
             throw new ParseFailedException(e.getMessage());
-        } 
+        }
         return flyables;
     }
 

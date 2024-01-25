@@ -1,6 +1,6 @@
 package avaj_launcher.flyable.aircraft;
 
-import avaj_launcher.simulator.Logger;
+import avaj_launcher.utils.logger.Logger;
 
 public class JetPlane extends Aircraft {
     private static final String TYPE = "JetPlane";

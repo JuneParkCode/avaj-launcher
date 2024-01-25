@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import avaj_launcher.flyable.Flyable;
-import avaj_launcher.simulator.Logger;
+import avaj_launcher.utils.logger.Logger;
 
 public class Tower {
     private List<Flyable> observers;

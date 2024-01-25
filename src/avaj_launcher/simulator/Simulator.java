@@ -4,6 +4,7 @@ import java.util.List;
 
 import avaj_launcher.flyable.Flyable;
 import avaj_launcher.tower.WeatherTower;
+import avaj_launcher.utils.logger.Logger;
 
 public class Simulator {
     private List<Flyable> flyables;
