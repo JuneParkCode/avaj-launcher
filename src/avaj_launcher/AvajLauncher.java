@@ -5,6 +5,7 @@ import java.io.IOException;
 import avaj_launcher.simulator.ScenarioParser;
 import avaj_launcher.simulator.Simulator;
 import avaj_launcher.simulator.SimulatorData;
+import avaj_launcher.simulator.ScenarioParser.ParseFailedException;
 import avaj_launcher.utils.logger.LogStrategyFactory;
 import avaj_launcher.utils.logger.Logger;
 
@@ -36,7 +37,7 @@ public class AvajLauncher {
       Simulator simulator = new Simulator(simulatorData);
 
       simulator.simulate();
-    } catch (Exception e) {
+    } catch (ParseFailedException e) {
       Logger.err(e.getMessage());
     } finally {
       Logger.close();
