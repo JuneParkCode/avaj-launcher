@@ -7,7 +7,11 @@ public class FileLogStrategy implements LogStrategy {
     private FileWriter writer;
 
     public FileLogStrategy(String filePath) throws IOException {
-        writer = new FileWriter(filePath, true);
+        writer = new FileWriter(filePath, false);
+    }
+
+    public FileLogStrategy(String filePath, boolean append) throws IOException {
+        writer = new FileWriter(filePath, append);
     }
 
     @Override
