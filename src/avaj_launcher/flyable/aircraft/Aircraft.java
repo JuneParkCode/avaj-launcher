@@ -19,7 +19,6 @@ public class Aircraft extends Flyable {
         /* no type no update */
     }
 
-
     protected void updateCoordinates(int longitude, int latitude, int height) {
         coordinates.setCoordinates(longitude, latitude, height);
     }
